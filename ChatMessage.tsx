@@ -1,77 +1,77 @@
-import { User } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { getModel } from "@/lib/nexus/models";
-import type { Message } from "@/lib/nexus/types";
-import { ModelGlyph } from "./ModelCard";
-import { Markdownish } from "./Markdownish";
+import { Check, Copy, UserRound } from "lucide-react";
+import { useState } from "react";
+import type { ChatMessageData } from "@/lib/ai-service";
+import NexusLogo3D from "./NexusLogo3D";
 
-export function ChatMessage({ message }: { message: Message }) {
-  const isUser = message.author === "user";
-  const model = message.metadata?.model ? getModel(message.metadata.model) : null;
+export function ChatMessage({ message }: { message: ChatMessageData }) {
+  const [copied, setCopied] = useState(false);
+  const isUser = message.role === "user";
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(message.text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable — ignore */
+    }
+  };
+
+  if (isUser) {
+    return (
+      <li className="flex animate-rise-in items-start justify-end gap-3">
+        <div className="max-w-[min(30rem,80%)] rounded-2xl rounded-tr-sm border border-neon/30 bg-linear-to-br from-crimson-dark/80 to-ink px-4 py-3">
+          {message.attachments?.length ? (
+            <ul className="mb-2 flex flex-wrap gap-2">
+              {message.attachments.map((a) => (
+                <li key={a.id}>
+                  {a.previewUrl ? (
+                    <img
+                      src={a.previewUrl}
+                      alt={a.name}
+                      className="size-16 rounded-lg border border-gold/30 object-cover"
+                    />
+                  ) : (
+                    <span className="rounded-lg border border-gold/30 px-2 py-1 text-xs text-gold-pale">
+                      {a.name}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <p className="text-sm whitespace-pre-wrap text-warm">{message.text}</p>
+          <p className="mt-1 text-right text-[10px] text-gold/60">{message.time}</p>
+        </div>
+        <span className="mt-1 grid size-9 shrink-0 place-items-center rounded-full border border-gold/40 bg-ink text-gold">
+          <UserRound className="size-4" />
+        </span>
+      </li>
+    );
+  }
 
   return (
-    <article className={cn("animate-rise flex gap-3", isUser && "justify-end")}>
-      {!isUser && (
-        <div className="mt-0.5">
-          {model ? (
-            <ModelGlyph name={model.name} accent={model.accent} />
-          ) : (
-            <span className="inline-flex size-8 items-center justify-center rounded-md border border-border bg-surface-2 font-mono text-xs">
-              NX
-            </span>
-          )}
+    <li className="flex animate-rise-in items-start gap-3">
+      <NexusLogo3D size={38} withOrbit={false} className="mt-1" />
+      <div className="glass-panel max-w-[min(36rem,86%)] rounded-2xl rounded-tl-sm px-4 py-3">
+        <p className="text-xs tracking-wide text-gold">Nexus</p>
+        <p className="mt-1.5 text-sm leading-relaxed whitespace-pre-wrap text-warm">
+          {message.text}
+        </p>
+        <div className="mt-2 flex items-center justify-between">
+          <span className="text-[10px] text-muted-foreground">{message.time}</span>
+          <button
+            type="button"
+            onClick={copy}
+            aria-label="Copy response"
+            className="grid size-7 place-items-center rounded-md text-muted-foreground transition-colors hover:text-gold"
+          >
+            {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+          </button>
         </div>
-      )}
-
-      <div className={cn("max-w-2xl", isUser && "order-first")}>
-        <div
-          className={cn(
-            "rounded-xl border px-4 py-3 text-sm leading-relaxed",
-            isUser
-              ? "border-primary/25 bg-primary/10 text-foreground"
-              : "border-border bg-surface",
-          )}
-        >
-          {isUser ? <p>{message.content}</p> : <Markdownish text={message.content} />}
-        </div>
-
-        {message.metadata && model && (
-          <dl className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 pl-1 text-[11px] text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <dt className="text-mono-xs">Model</dt>
-              <dd className="font-medium text-foreground">{model.name}</dd>
-            </div>
-            {message.metadata.latencySeconds != null && (
-              <div className="flex items-center gap-1.5">
-                <dt className="text-mono-xs">Latency</dt>
-                <dd className="font-mono text-foreground">
-                  {message.metadata.latencySeconds.toFixed(1)}s
-                </dd>
-              </div>
-            )}
-            {message.metadata.contextUsage != null && (
-              <div className="flex items-center gap-1.5">
-                <dt className="text-mono-xs">Context</dt>
-                <dd className="font-mono text-foreground">
-                  {Math.round(message.metadata.contextUsage)}%
-                </dd>
-              </div>
-            )}
-            {message.metadata.confidence && (
-              <div className="flex items-center gap-1.5">
-                <dt className="text-mono-xs">Confidence</dt>
-                <dd className="font-medium text-success">{message.metadata.confidence}</dd>
-              </div>
-            )}
-          </dl>
-        )}
       </div>
-
-      {isUser && (
-        <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-md border border-border bg-surface-2 text-muted-foreground">
-          <User className="size-4" strokeWidth={1.8} />
-        </span>
-      )}
-    </article>
+    </li>
   );
 }
+
+export default ChatMessage;

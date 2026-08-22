@@ -1,1062 +1,1808 @@
-# Nexus Flow
+# Nexus AI Core
 
-Build a polished, production quality frontend prototype for an intelligent AI orchestration platform called "NEXUS AI".
+Create a complete, production-quality, responsive AI assistant web application called "Nexus.ai".
 
-IMPORTANT PRODUCT CONCEPT
+I am providing a reference image with this prompt. Use the reference image as the primary inspiration for the overall composition, spacing, positioning, proportions, and visual hierarchy.
 
-NEXUS AI allows a user to interact with multiple AI models through one interface and one login.
+IMPORTANT:
 
-The core innovation is intelligent model orchestration.
+Do NOT simply place the reference image as the website background.
 
-The user should never need to manually worry about which AI model is currently handling the conversation.
+Recreate the entire interface using real HTML, React components, CSS/Tailwind, SVG/CSS graphics, and JavaScript interactions.
 
-The system should automatically select a suitable AI model based on the task.
+The result must be a real, functional, responsive web application.
 
-If the active AI reaches its token limit, context limit, usage limit, becomes unavailable, encounters an error, or is otherwise unable to continue, the orchestration layer should automatically route the conversation to another suitable AI model.
+==================================================
 
-The conversation context, task state, important decisions, instructions, and user intent must be preserved during the handoff.
+1. CORE DESIGN CONCEPT
 
-The user should experience this as one continuous conversation.
+==================================================
 
-The frontend is initially a demonstration prototype. Do NOT require real AI API keys. Simulate the AI responses and model handoff behavior realistically so the complete concept can be demonstrated.
+Nexus.ai is a futuristic AI assistant and AI command-center interface.
 
-DESIGN DIRECTION
+The design should feel:
 
-Create a premium technology startup interface.
+- futuristic
 
-Do NOT make it look like a generic AI generated dashboard.
+- premium
 
-Avoid excessive gradients, excessive glassmorphism, giant text, unnecessary illustrations, cartoon graphics, and generic AI robot imagery.
+- cinematic
 
-The design should feel like a serious product from a modern AI infrastructure company.
+- intelligent
+
+- powerful
+
+- luxurious
+
+- technologically advanced
+
+- minimal but visually impressive
+
+The visual identity should combine:
+
+BLACK + DARK BLACK + DEEP RED + NEON RED + METALLIC GOLD.
+
+Do NOT use the original blue, cyan, purple, pink, or turquoise color scheme.
+
+The new design should feel like a premium "AI intelligence system" rather than a generic chatbot.
+
+Avoid making it look like a gaming website.
+
+Avoid excessive neon effects.
+
+The interface should feel sophisticated and professional.
+
+==================================================
+
+2. TECHNOLOGY STACK
+
+==================================================
 
 Use:
 
-Dark navy / almost black background
+- React
 
-#080B12 as primary background
+- TypeScript
 
-Secondary surfaces:
+- Tailwind CSS
 
-#101521
+- Vite
 
-#151B29
+- Lucide React icons
 
-Primary accent:
+- CSS animations
 
-Electric blue #4F8CFF
+- SVG where appropriate
 
-Secondary accent:
+- Browser APIs for voice/camera/file selection
 
-Violet #8B5CF6
+- Local state for UI interactions
 
-Success:
+Use a clean component-based architecture.
 
-#22C55E
+The application must run without errors.
 
-Warning:
+Use reusable components instead of putting the entire application into one file.
 
-#F59E0B
+Structure the project approximately as:
 
-Error:
+src/
 
-#EF4444
+  components/
 
-Text:
+    Navbar.tsx
 
-White #F8FAFC
+    NexusLogo.tsx
 
-Secondary text:
+    Hero.tsx
 
-#94A3B8
+    AIInput.tsx
 
-Use subtle borders:
+    AttachmentMenu.tsx
 
-rgba(255,255,255,0.08)
+    VoiceInput.tsx
 
-Use Inter or a similar clean modern sans serif font.
+    LoginModal.tsx
 
-Use Lucide icons.
+    ProfileMenu.tsx
 
-Use subtle shadows.
+    NavigationDrawer.tsx
 
-Use restrained animations.
+    NeuralBackground.tsx
 
-The interface should feel fast, intelligent, reliable, and technical.
+    ChatInterface.tsx
 
-PRODUCT NAME
+    ChatMessage.tsx
 
-NEXUS AI
+    ChatHistory.tsx
 
-Tagline:
+    CameraModal.tsx
 
-"Multiple AIs. One continuous intelligence."
+    SettingsPanel.tsx
 
-MAIN NAVIGATION
+  pages/
 
-Create a left sidebar.
+    Home.tsx
 
-Top:
+  App.tsx
 
-NEXUS AI logo
+  main.tsx
 
-Small abstract interconnected node icon
+  index.css
 
-Text: NEXUS AI
+==================================================
 
-Navigation:
+3. COLOR SYSTEM
 
-Dashboard
+==================================================
 
-New Chat
+Completely replace the previous blue/cyan/purple/pink design.
 
-Conversations
+Use this color palette:
 
-Projects
+PRIMARY BLACK:
 
-Models
+#000000
 
-Orchestration
+DARK BLACK:
 
-Usage
+#030303
 
-Settings
+SECONDARY BLACK:
 
-Bottom:
+#080808
 
-User avatar
+CHARCOAL:
 
-User name: Demo User
+#111111
 
-Plan: SIH Prototype
+DEEP RED:
 
-Add collapse/expand behavior for the sidebar.
+#240000
 
-SCREEN 1: DASHBOARD
+DARK CRIMSON:
 
-Create a dashboard showing the overall state of the AI orchestration platform.
+#3A0000
 
-Header:
+CRIMSON:
 
-"Good morning, Demo User"
+#700000
 
-Subtitle:
+DEEP RED:
 
-"Your AI workspace is ready."
+#8B0000
 
-Top right:
+NEON RED:
 
-New Conversation button
+#FF1A1A
 
-Profile button
+BRIGHT NEON RED:
 
-Create four statistics cards:
+#FF3030
 
-Active Models
+METALLIC GOLD:
 
-4
+#D4AF37
 
-Conversations
+BRIGHT GOLD:
 
-24
+#FFD700
 
-Successful Handoffs
+WARM GOLD:
 
-7
+#F5B942
 
-Context Preserved
+PALE GOLD:
 
-100%
+#FFE8A3
 
-Below the statistics create a large "Orchestration Status" card.
+WARM WHITE:
 
-Show:
+#F5F1E6
 
-ORCHESTRATOR
+Use approximately:
 
-Status: ONLINE
+70% black/dark black
 
-Use a green pulsing indicator.
+15–20% dark/deep red
 
-Display:
+5–10% gold
 
-Models available:
+small amounts of neon red for active states
 
-GPT
+BLACK should remain the dominant visual color.
 
-Claude
+GOLD should be the premium accent.
 
-Gemini
+NEON RED should represent energy and active AI states.
 
-Llama
+==================================================
 
-Show each model as a small card with:
+4. BACKGROUND
 
-Model name
+==================================================
 
-Status
+Create a full-screen dark cinematic background.
 
-Capability
+The base should be almost black.
 
-Context capacity
+Use layered gradients such as:
 
-Latency indicator
+- black
 
-Example:
+- dark crimson
 
-GPT
+- subtle red
 
-Available
+- black
 
-Reasoning
+Example visual concept:
 
-128K context
+black background
 
-Claude
++
 
-Available
+subtle deep-red atmospheric glow
 
-Long Context
++
 
-200K context
+very subtle neon-red energy
 
-Gemini
++
 
-Available
+gold particles
 
-Multimodal
++
 
-1M context
+futuristic digital neural network
 
-Llama
+Do not make the background bright.
 
-Available
+The user should immediately perceive a black interface with controlled red and gold illumination.
 
-Open Model
+==================================================
 
-128K context
+5. FUTURISTIC AI NEURAL NETWORK
 
-Below this create a "Recent Activity" timeline.
+==================================================
 
-Example:
+The bottom portion of the page should contain a futuristic digital neural-network environment inspired by the reference image.
 
-10:42
+Create:
 
-Conversation started
+- interconnected nodes
 
-Claude selected
+- thin glowing lines
 
-10:46
+- digital grid
 
-Context threshold detected
+- small particles
 
-Orchestrator activated
+- network points
 
-10:46
+- subtle wave-like structures
 
-Gemini selected
+- depth
 
-Context transferred
+- glowing data paths
 
-10:47
+Primary network colors:
 
-Task continued successfully
+dark red
 
-Make this timeline visually impressive.
+deep crimson
 
-SCREEN 2: CHAT INTERFACE
+neon red
 
-This is the most important screen.
+Accent nodes:
 
-Create a full AI chat interface.
+metallic gold
 
-Top header:
+bright gold
 
-Conversation title:
+The neural network should occupy approximately the lower 35–45% of the initial viewport.
 
-"Research Assistant"
+It should look like a futuristic AI intelligence network.
 
-Under it show:
+Do not make it look like a normal chart.
 
-AUTO MODE
+==================================================
 
-Orchestrator Online
+6. NETWORK ANIMATION
 
-Add a small animated status indicator.
+==================================================
 
-Create chat messages.
+Add subtle animation:
 
-User:
+- nodes slowly pulse
 
-"Compare the advantages of edge AI and cloud AI for a healthcare application."
+- lines gently change opacity
 
-AI response:
+- some nodes glow brighter occasionally
 
-Provide a realistic concise response.
+- particles move slowly
 
-Under the response show a small metadata row:
+- network has subtle depth movement
 
-Model:
+Animation must be smooth and lightweight.
 
-Claude
+Do not overload the page with hundreds of particles.
 
-Latency:
+On mobile, reduce the number of animated elements to improve performance.
 
-1.8s
+==================================================
 
-Context:
+7. SPECIAL 3D NEXUS.AI LOGO
 
-42%
+==================================================
 
-Confidence:
+This is one of the MOST IMPORTANT parts.
 
-High
+The original 2D Nexus logo should be transformed into a distinctive premium 3D AI emblem.
 
-Then create another user message:
+Do not simply use a flat logo with a gradient.
 
-"Now design a scalable architecture for the system and explain how the components communicate."
+Create a dedicated:
 
-Show the AI beginning to answer.
+NexusLogo3D
 
-Then create the most important demonstration.
+component.
 
-The current model should show:
+The logo should visually combine:
 
-CLAUDE
+- a stylized futuristic "N"
 
-Processing...
+- interconnected neural pathways
 
-Then animate the context meter increasing.
+- metallic gold outer structure
 
-When it reaches approximately 90%, show:
+- black/dark interior
 
-"Context capacity approaching limit"
+- deep red internal illumination
 
-Then trigger an orchestration animation.
+- neon-red energy ring
 
-The screen should show:
+- subtle gold highlights
 
-ORCHESTRATOR ACTIVATED
+- 3D depth
 
-"Evaluating available models..."
+- bevelled edges
 
-Then show model selection cards:
+- reflective metallic surface
 
-Claude
+The logo should look like a physical futuristic AI processor/emblem.
 
-Context capacity: 90%
+==================================================
 
-Status: Near Limit
+8. SPECIAL LOGO CONCEPT
 
-GPT
+==================================================
 
-Context capacity: 45%
+Create a unique visual concept:
 
-Status: Available
+A stylized 3D letter "N" constructed from metallic segments.
 
-Gemini
+The "N" should have:
 
-Context capacity: 20%
+- black metallic core
 
-Status: Available
+- gold bevelled edges
 
-Llama
+- deep red internal glow
 
-Context capacity: 30%
+Around or partially around the N:
 
-Status: Available
+Create a thin futuristic orbital ring.
 
-Highlight Gemini as the selected model.
+The orbital ring should have:
 
-Show:
+- metallic gold sections
 
-"Gemini selected"
+- neon-red illuminated sections
 
-Reason:
+Add a few tiny glowing particles around the orbital ring.
 
-"Large available context capacity + suitable reasoning capability"
+The overall impression should be:
 
-Then show a visual transfer animation:
+"An intelligent AI core powering Nexus.ai."
 
-Conversation
+The logo should NOT look like a generic letter N.
 
-↓
+It should feel like a futuristic AI symbol.
 
-Context Extraction
+==================================================
 
-↓
+9. LOGO 3D EFFECT
 
-Task State Preservation
+==================================================
 
-↓
+Use lightweight CSS/SVG techniques where possible.
 
-Intent Preservation
+Create the illusion of:
 
-↓
+- extrusion
 
-Gemini
+- depth
 
-Then display:
+- bevel
 
-✓ Context preserved
+- metallic reflection
 
-✓ Task state preserved
+- inner glow
 
-✓ User intent preserved
+- outer glow
 
-✓ Conversation continued
+Use multiple SVG paths or layered elements if necessary.
 
-Then Gemini continues the exact task.
+The logo should have a subtle shadow behind it.
 
-The user should NOT have to click anything.
+The gold should look metallic rather than flat yellow.
 
-This is the key demonstration of the entire product.
+==================================================
 
-Add a small system notification:
+10. LOGO ANIMATION
 
-"Model handoff completed automatically. Your conversation continues without interruption."
+==================================================
 
-SCREEN 3: MODEL CONTROL CENTER
+The logo should have a subtle idle animation.
 
-Create a screen called:
+Possible effects:
 
-"Model Control Center"
+- very slow floating
 
-Show all connected models.
+- tiny rotation
 
-Each model should have:
+- subtle glow breathing
 
-Model name
+- moving metallic reflection
 
-Provider
+- slight orbital ring movement
 
-Status
+Do NOT continuously spin the entire logo.
 
-Capabilities
+On hover:
 
-Context window
+- slight 3D perspective tilt
 
-Current load
+- metallic highlight moves across the logo
 
-Average latency
+- neon-red glow becomes slightly stronger
 
-Estimated cost
+- gold edge becomes brighter
 
-Reliability
+Maximum hover rotation should be subtle, approximately 3–5 degrees.
 
-Models:
+==================================================
 
-GPT
+11. NEXUS.AI BRAND TEXT
 
-Claude
+==================================================
 
-Gemini
+Place the text:
 
-Llama
+Nexus.ai
 
-Create visual status indicators.
+next to the 3D logo.
 
-Green:
+Use a premium modern font such as:
 
-Available
+- Inter
 
-Yellow:
+- Geist
 
-High Load
+- Space Grotesk
 
-Red:
+The text should use a metallic gold gradient.
 
-Unavailable
+Suggested gradient:
 
-Allow the user to click a model to open a detail panel.
+dark gold
 
-The detail panel should show:
+→ metallic gold
 
-Model capabilities
+→ bright gold
 
-Context size
+→ pale gold
 
-Average response time
+→ dark gold
 
-Current availability
+Add a very subtle red glow behind the text.
 
-Recent usage
+Do not use cyan, blue, purple, or pink.
 
-Supported task types
+==================================================
 
-Add buttons:
+12. NAVIGATION BAR
 
-Connect Model
+==================================================
 
-Configure
+Preserve the basic navigation composition from the reference.
 
-Set Priority
-
-View Details
-
-Create an "AUTO ROUTING" control.
-
-Show:
-
-Automatic model selection: ON
-
-Allow the user to set routing preferences:
-
-Best Quality
-
-Lowest Cost
-
-Fastest Response
-
-Largest Context
-
-Balanced
-
-Make "Balanced" selected by default.
-
-SCREEN 4: ORCHESTRATION ENGINE
-
-This screen visually explains the product's intelligence.
-
-Title:
-
-"Orchestration Engine"
-
-Subtitle:
-
-"Decide. Route. Preserve. Continue."
-
-Create a large interactive flow diagram.
-
-User Request
-
-↓
-
-Task Analyzer
-
-↓
-
-Capability Matcher
-
-↓
-
-Model Router
-
-↓
-
-Selected AI Model
-
-↓
-
-Monitoring Layer
-
-Then branch from Monitoring Layer:
-
-Task Complete
-
-OR
-
-Limit Detected
-
-OR
-
-Model Unavailable
-
-OR
-
-Error
-
-All failure states should route back to:
-
-Model Router
-
-Then:
-
-Context Manager
-
-↓
-
-Task State
-
-↓
-
-Intent
-
-↓
-
-New AI Model
-
-↓
-
-Continue Conversation
-
-Make the nodes animated.
-
-Use flowing blue/violet particles along the connection lines.
-
-When the demo is running, animate the path.
-
-Add a side panel:
-
-CURRENT DECISION
-
-Task:
-
-Long form technical research
-
-Active Model:
-
-Claude
-
-Context:
-
-89%
-
-Available alternatives:
-
-GPT
-
-Gemini
-
-Llama
-
-Recommended:
-
-Gemini
-
-Reason:
-
-Large context capacity and suitable reasoning capability.
-
-Add a button:
-
-"Run Handoff Simulation"
-
-When clicked, run the complete orchestration animation.
-
-SCREEN 5: CONTEXT & MEMORY
-
-Create a screen called:
-
-"Continuity Layer"
-
-This screen explains how context survives a model handoff.
-
-Create four large cards:
-
-CONVERSATION CONTEXT
-
-Previous messages
-
-Important facts
-
-Relevant references
-
-User preferences
-
-TASK STATE
-
-Current objective
-
-Completed steps
-
-Pending steps
-
-Intermediate results
-
-USER INTENT
-
-Original goal
-
-Constraints
-
-Expected output
-
-Priority
-
-MODEL HANDOFF
-
-Previous model
-
-Reason for switch
-
-New model
-
-Transfer status
-
-Create a visual before/after demonstration.
+Desktop:
 
 LEFT:
 
-CLAUDE
-
-Current task:
-
-Design healthcare AI architecture
-
-Progress:
-
-68%
-
-Context:
-
-91%
+3D Nexus logo + Nexus.ai
 
 RIGHT:
 
-GEMINI
+Login
 
-Received:
+Profile
 
-Conversation context ✓
+Hamburger menu
 
-Task state ✓
+Use generous spacing.
 
-User intent ✓
+The navbar should be transparent over the background.
 
-Important decisions ✓
+Do not create a large solid navbar.
 
-Progress:
+==================================================
 
-68%
+13. LOGIN BUTTON
 
-The key point is that the second AI continues from 68%, rather than starting from zero.
+==================================================
 
-Add a small explanation:
+Create a pill-shaped Login button.
 
-"The model changes. The user's work does not."
+Text:
 
-SCREEN 6: SIH DEMO MODE
+Login
 
-Create a special screen specifically designed for demonstrating the idea to judges.
+Visual design:
 
-Title:
+- black interior
 
-"Live Orchestration Demo"
+- subtle dark-red gradient
 
-Subtitle:
+- metallic gold border
 
-"Watch the system recover from an AI limitation without interrupting the user."
+- gold text
 
-Create a large central demo window.
+Hover:
 
-At the top:
+- stronger gold border
 
-Scenario:
+- subtle neon-red glow
 
-"Long Research Task"
+- slight scale animation
 
-Current AI:
+Clicking Login must open a proper modal.
 
-Claude
+==================================================
 
-Status:
+14. LOGIN MODAL
 
-Processing
+==================================================
 
-Create a progress bar.
+Create a premium dark login modal.
 
-Then add a large button:
+Design:
 
-"START DEMO"
+black background
 
-When clicked, automatically run the following sequence.
+dark-red glow
 
-PHASE 1
+gold border
 
-Display:
+subtle glass effect
 
-User submits a long research request.
+Contents:
 
-Claude selected.
+Welcome back
 
-Status:
+Email
 
-Processing...
+Password
 
-PHASE 2
+Login
 
-Increase context usage visually.
+Forgot password?
 
-50%
+Create account
 
-65%
+Continue with Google
 
-75%
+This can initially be a frontend/demo login.
 
-85%
+Do not require a backend yet.
 
-90%
+The modal must have:
 
-At 90%, show:
+- close button
 
-"Context threshold reached."
+- proper form fields
 
-PHASE 3
+- validation for empty fields
 
-Show:
+- loading state
 
-ORCHESTRATOR ACTIVATED
+- success/demo state
 
-"Finding the best available alternative..."
+==================================================
 
-Display the models.
+15. PROFILE BUTTON
 
-Claude:
+==================================================
 
-Context almost full
+Create:
 
-GPT:
+Profile
 
-Available
+with a circular user icon.
 
-Gemini:
+Use:
 
-Available
+black
 
-Llama:
+deep red
 
-Available
+gold
 
-Highlight Gemini.
+On click, show:
 
-PHASE 4
+Profile
 
-Display a beautiful transfer animation.
+----------------
 
-CLAUDE
+My Account
 
-↓
+Settings
 
-Context extraction
+Chat History
 
-↓
+Appearance
 
-Task state extraction
+Logout
 
-↓
+Use a premium glassmorphism dropdown.
 
-Intent preservation
+==================================================
 
-↓
+16. HAMBURGER MENU
 
-GEMINI
+==================================================
 
-PHASE 5
+Create a hamburger icon on the far right.
 
-Show:
+Use three clean lines.
 
-HANDOFF COMPLETE
+Color:
 
-✓ Conversation preserved
+gold with subtle red glow.
 
-✓ Context preserved
+When clicked, open a right-side navigation drawer.
 
-✓ Task state preserved
+Menu items:
 
-✓ User intent preserved
+New Chat
 
-PHASE 6
+Home
 
-Show:
+Chat History
 
-GEMINI
+Profile
 
-"Continuing your task..."
+Settings
 
-Then show Gemini continuing the original answer.
+About Nexus.ai
 
-At the bottom:
+Include a close button.
 
-"User intervention required: None"
+Animate the drawer smoothly from right to left.
 
-"Conversation interrupted: No"
+==================================================
 
-"Task restarted: No"
+17. HERO SECTION
 
-This should be the strongest visual demonstration in the entire application.
+==================================================
 
-GLOBAL COMPONENTS
+The initial page should remain visually close to the reference composition.
 
-Create reusable components:
+Center:
 
-Sidebar
+Welcome, I’m Nexus
 
-TopBar
+Use the exact curly apostrophe:
 
-ModelCard
+I’m
 
-StatusIndicator
+Do not change it to:
 
-ChatMessage
+I'm
 
-ContextMeter
+The heading should be large and premium.
 
-ModelSelector
+Use a gradient:
 
-OrchestrationGraph
+metallic gold
 
-HandoffAnimation
+→ warm gold
 
-ActivityTimeline
+→ pale gold
 
-NotificationToast
+→ subtle neon red
 
-MetricCard
+The primary appearance should remain gold.
 
-Modal
+Add a subtle glow.
 
-Button
+==================================================
 
-Dropdown
+18. HERO POSITION
 
-Tabs
+==================================================
 
-ProgressBar
+Maintain significant empty atmospheric space around the hero.
 
-INTERACTIONS
+Approximate layout:
 
-Add smooth transitions.
+Navbar
 
-Buttons should have hover states.
+        ↓
 
-Cards should have subtle hover elevation.
+Atmospheric space
 
-Model status indicators should animate.
+        ↓
 
-Context meters should animate.
+Welcome, I’m Nexus
 
-The orchestration graph should animate during handoffs.
+        ↓
 
-Notifications should slide in smoothly.
+AI questioning bar
 
-The sidebar should collapse.
+        ↓
 
-The model detail panels should open without navigating away.
+Neural network
 
-The application should be responsive.
+The heading should sit approximately around 35–40% of viewport height on desktop.
 
-DEMO DATA
+==================================================
 
-Do not require backend APIs initially.
+19. AI QUESTIONING BAR
 
-Use realistic mock data.
+==================================================
 
-Create mock AI responses.
+This is the MOST IMPORTANT interactive component.
 
-Create mock model status.
+Create a large rounded AI input bar.
 
-Create mock context usage.
+Desktop:
 
-Create mock orchestration decisions.
+width: approximately 620–650px
 
-Make the entire prototype functional using local state.
+height: approximately 60–65px
 
-Do not create fake buttons that do nothing.
+Mobile:
 
-Every major interaction should produce a visible result.
+width: calc(100% - 32px)
 
-IMPORTANT: ARCHITECTURE
+Border radius:
 
-Structure the frontend cleanly so a real backend can be connected later.
+9999px
 
-Separate:
+The bar should have:
 
-UI components
+black interior
 
-Mock AI services
+dark red gradient
 
-Orchestration simulation
+subtle gold border
 
-Model configuration
+neon-red outer glow
 
-Conversation state
+The design should feel like a futuristic AI command console.
 
-Context state
+==================================================
 
-Create clear interfaces/types for:
+20. QUESTION BAR CONTENT
 
-Model
+==================================================
 
-Conversation
+Structure:
 
-Message
+LEFT:
 
-TaskState
++
 
-ContextState
+CENTER:
 
-OrchestrationDecision
+Ask anything here.....
 
-HandoffEvent
+RIGHT:
 
-Do not hardcode the entire application into one component.
+voice waveform / microphone
 
-Use reusable React components.
+Example:
 
-TECHNICAL REQUIREMENTS
++   Ask anything here.....             microphone
 
-Use React.
+The input must be a real input.
 
-Use TypeScript.
+The user can type normally.
 
-Use Tailwind CSS.
+==================================================
+
+21. PLUS BUTTON
+
+==================================================
+
+The + button must be fully functional.
+
+Use a gold circular button or gold plus icon.
+
+When clicked, open a floating attachment/action menu.
+
+==================================================
+
+22. ATTACHMENT MENU
+
+==================================================
+
+The + menu must contain:
+
+Add image
+
+Upload file
+
+Camera
+
+Screenshot
+
+Voice input
 
 Use Lucide icons.
 
-Use responsive layouts.
+Do NOT use emoji for the actual interface.
 
-Use accessible buttons and controls.
+Example:
 
-Use clean component architecture.
+[Image icon] Add image
 
-Avoid unnecessary dependencies.
+[File icon] Upload file
 
-Do not use real API keys.
+[Camera icon] Camera
 
-Do not expose secrets in frontend code.
+[Monitor icon] Screenshot
 
-Create a README explaining how the prototype works and where real AI APIs can later be connected.
+[Mic icon] Voice input
 
-CRITICAL UX PRINCIPLE
+Menu styling:
 
-The platform should make one concept immediately obvious:
+black
 
-"The AI model can change without the user's conversation or task being interrupted."
+dark red
 
-The user should feel that NEXUS AI is an orchestration layer above individual AI models.
+gold border
 
-The application should NOT feel like four separate chatbots placed next to each other.
+gold icons
 
-It should feel like ONE intelligent system powered by multiple models.
+warm-white text
 
-FINAL VISUAL IMPRESSION
+subtle neon-red glow
 
-When someone opens the application for the first time, they should immediately understand:
+Animate with:
 
-One login.
+fade-in
 
-One interface.
+scale-in
 
-Multiple AI models.
+small upward movement
 
-Automatic intelligent routing.
+Close when clicking outside.
 
-Automatic model switching.
+==================================================
 
-Context preservation.
+23. ADD IMAGE
 
-Task continuity.
+==================================================
 
-The overall product should look credible enough to demonstrate as an SIH 2026 prototype to judges, mentors, and potential technical reviewers.
+When Add image is clicked:
+
+Open the system file selector.
+
+Accept:
+
+PNG
+
+JPG
+
+JPEG
+
+WEBP
+
+GIF
+
+After selection:
+
+show an image thumbnail above/inside the input area.
+
+Include a remove button.
+
+==================================================
+
+24. UPLOAD FILE
+
+==================================================
+
+When Upload file is clicked:
+
+Allow:
+
+PDF
+
+TXT
+
+DOC
+
+DOCX
+
+CSV
+
+Display the selected filename.
+
+Example:
+
+document.pdf
+
+with a file icon and remove button.
+
+==================================================
+
+25. CAMERA
+
+==================================================
+
+When Camera is selected:
+
+Use:
+
+navigator.mediaDevices.getUserMedia()
+
+to request camera access.
+
+If permission is granted:
+
+show camera preview.
+
+Provide:
+
+Capture
+
+Cancel
+
+buttons.
+
+Use black/red/gold styling.
+
+If camera access is unavailable:
+
+show:
+
+Camera access is unavailable on this device/browser.
+
+Do not crash.
+
+==================================================
+
+26. SCREENSHOT
+
+==================================================
+
+Add a Screenshot option.
+
+If browser screen capture is supported, attempt to use the appropriate browser API.
+
+If unsupported:
+
+show a graceful message.
+
+Do not break the application.
+
+==================================================
+
+27. VOICE BUTTON
+
+==================================================
+
+The right side of the questioning bar must contain a dedicated voice button.
+
+Use a microphone icon or animated waveform.
+
+Inactive:
+
+subtle gold/red waveform.
+
+Active:
+
+neon-red waveform with gold accents.
+
+==================================================
+
+28. VOICE INPUT
+
+==================================================
+
+When the microphone is clicked:
+
+activate voice mode.
+
+Display:
+
+Listening...
+
+Use animated waveform bars.
+
+If browser Speech Recognition is available:
+
+convert speech to text.
+
+The recognized text should automatically appear inside the question input.
+
+If unsupported:
+
+show:
+
+Voice input isn't supported in this browser.
+
+Provide a clean fallback.
+
+==================================================
+
+29. VOICE VISUALIZATION
+
+==================================================
+
+Create 5–7 animated vertical waveform bars.
+
+Inactive:
+
+dark red + gold.
+
+Active:
+
+neon red + bright gold.
+
+The bars should animate at different heights.
+
+Keep the animation elegant and smooth.
+
+==================================================
+
+30. QUESTION SUBMISSION
+
+==================================================
+
+Allow submission using:
+
+- Enter key
+
+- optional send button
+
+When submitted:
+
+1. Add the question to the conversation.
+
+2. Clear the input.
+
+3. Show "Nexus is thinking..."
+
+4. Display a realistic mock AI response.
+
+Example:
+
+User:
+
+What is artificial intelligence?
+
+Nexus:
+
+Artificial intelligence is the field of creating systems capable of performing tasks that normally require human intelligence.
+
+For now, use mock responses.
+
+Create the code so a real AI API can easily be connected later.
+
+==================================================
+
+31. CHAT MODE
+
+==================================================
+
+Initially show:
+
+Welcome, I’m Nexus
+
+and the central AI input.
+
+After the user submits a question:
+
+transition into a conversation interface.
+
+Keep the same black/red/gold environment.
+
+Do NOT turn the website into a generic ChatGPT clone.
+
+The conversation should feel like the user is interacting with the Nexus AI system.
+
+==================================================
+
+32. USER MESSAGE DESIGN
+
+==================================================
+
+User messages should use:
+
+black
+
+dark red
+
+subtle neon-red accent
+
+Add a thin gold detail where appropriate.
+
+==================================================
+
+33. NEXUS RESPONSE DESIGN
+
+==================================================
+
+Nexus responses should use:
+
+black/glass surface
+
+thin metallic gold border
+
+warm-white text
+
+gold Nexus icon
+
+The Nexus 3D logo can appear as a small avatar beside responses.
+
+==================================================
+
+34. CHAT HISTORY
+
+==================================================
+
+Create a Chat History panel.
+
+Example:
+
+Today
+
+What is artificial intelligence?
+
+Explain quantum computing
+
+Create a Python program
+
+How does neural networking work?
+
+Yesterday
+
+What is machine learning?
+
+Explain recursion
+
+Use subtle red/gold hover effects.
+
+The currently selected conversation should have a dark red highlight with a gold accent.
+
+==================================================
+
+35. SPECIAL AI STATUS INDICATOR
+
+==================================================
+
+Add a small premium AI status indicator near the Nexus logo or response.
+
+Example:
+
+● NEXUS ONLINE
+
+Use:
+
+gold text
+
+small neon-red indicator
+
+The indicator should subtly pulse.
+
+This gives the interface the feeling of a live AI system.
+
+==================================================
+
+36. AI THINKING ANIMATION
+
+==================================================
+
+When Nexus is generating a response:
+
+Display:
+
+Nexus is thinking...
+
+Use three small animated dots.
+
+Colors:
+
+neon red
+
+gold
+
+Example:
+
+Nexus is thinking . . .
+
+==================================================
+
+37. PREMIUM DESIGN DETAILS
+
+==================================================
+
+Add subtle special details that improve the visual quality:
+
+- thin gold divider lines
+
+- tiny red glowing particles
+
+- subtle circuit patterns
+
+- small gold data points
+
+- soft red atmospheric light
+
+- very subtle scanline effect
+
+- micro-grid textures
+
+- faint geometric lines
+
+These should be extremely subtle.
+
+Do not clutter the interface.
+
+==================================================
+
+38. RED NEON EFFECT
+
+==================================================
+
+Use neon red primarily for:
+
+- active states
+
+- AI listening state
+
+- AI thinking state
+
+- glowing network nodes
+
+- hover accents
+
+- logo energy ring
+
+- selected navigation elements
+
+Do not make every component neon red.
+
+==================================================
+
+39. GOLD EFFECT
+
+==================================================
+
+Use metallic gold for:
+
+- logo
+
+- brand name
+
+- important icons
+
+- borders
+
+- hero heading
+
+- primary accents
+
+- active controls
+
+Gold should appear premium and restrained.
+
+Do not use flat bright yellow everywhere.
+
+==================================================
+
+40. BLACK GLASSMORPHISM
+
+==================================================
+
+Use glassmorphism selectively.
+
+Examples:
+
+Login modal
+
+Profile dropdown
+
+Attachment menu
+
+Navigation drawer
+
+Chat panels
+
+Use:
+
+background:
+
+rgba(0,0,0,0.75)
+
+backdrop-filter:
+
+blur(16px)
+
+border:
+
+rgba(212,175,55,0.3)
+
+Add subtle red glow.
+
+==================================================
+
+41. RESPONSIVE DESIGN
+
+==================================================
+
+The website must work correctly on:
+
+1920px
+
+1440px
+
+1366px
+
+1024px
+
+768px
+
+430px
+
+390px
+
+320px
+
+No horizontal scrolling.
+
+No elements should overflow.
+
+==================================================
+
+42. MOBILE NAVBAR
+
+==================================================
+
+On mobile:
+
+show:
+
+3D Nexus logo + Nexus.ai + hamburger
+
+Move Login and Profile into the hamburger drawer.
+
+==================================================
+
+43. MOBILE HERO
+
+==================================================
+
+Hero heading should automatically scale.
+
+Possible layout:
+
+Welcome,
+
+I’m Nexus
+
+The questioning bar must remain usable.
+
+Width:
+
+calc(100% - 32px)
+
+Keep:
+
++
+
+input
+
+microphone
+
+visible at all times.
+
+==================================================
+
+44. MOBILE ATTACHMENT MENU
+
+==================================================
+
+On mobile, the attachment menu should become either:
+
+- compact popup above the input
+
+OR
+
+- bottom sheet
+
+Choose the option that provides the best UX.
+
+Never allow it to extend beyond the viewport.
+
+==================================================
+
+45. ACCESSIBILITY
+
+==================================================
+
+Use semantic HTML.
+
+Every interactive button must have an accessible label.
+
+Examples:
+
+Open attachments
+
+Start voice input
+
+Open profile
+
+Open navigation
+
+Upload image
+
+Upload file
+
+Open camera
+
+Support keyboard navigation.
+
+Provide visible focus states.
+
+==================================================
+
+46. PERFORMANCE
+
+==================================================
+
+Optimize all animations.
+
+Do not use excessive particles.
+
+Reduce animation complexity on mobile.
+
+Avoid unnecessary React re-renders.
+
+Use CSS animations wherever possible.
+
+The site should feel smooth even on mid-range laptops.
+
+==================================================
+
+47. FUTURE AI API ARCHITECTURE
+
+==================================================
+
+Create a clean service abstraction such as:
+
+sendMessage(message, attachments)
+
+For now:
+
+return mock response.
+
+Later it should be easy to connect to:
+
+OpenAI
+
+Gemini
+
+Anthropic
+
+other AI APIs
+
+Never expose API keys in client-side code.
+
+Use environment variables for future integrations.
+
+==================================================
+
+48. ERROR HANDLING
+
+==================================================
+
+Handle gracefully:
+
+- unsupported microphone
+
+- denied camera permission
+
+- unsupported file
+
+- empty question
+
+- failed upload
+
+- unavailable browser APIs
+
+Never let the application crash because of these conditions.
+
+==================================================
+
+49. DO NOT USE THE SCREENSHOT AS A STATIC BACKGROUND
+
+==================================================
+
+This is extremely important.
+
+Do NOT:
+
+- place the screenshot as the page background
+
+- overlay buttons on top of it
+
+- create a fake interface
+
+Actually build the website.
+
+All major elements must be real:
+
+- navigation
+
+- login
+
+- profile
+
+- hamburger menu
+
+- input
+
+- plus menu
+
+- image upload
+
+- file upload
+
+- camera
+
+- voice input
+
+- chat
+
+- chat history
+
+- settings
+
+==================================================
+
+50. DO NOT USE THESE COLORS
+
+==================================================
+
+Do NOT use:
+
+blue
+
+cyan
+
+purple
+
+pink
+
+turquoise
+
+bright green
+
+The primary palette is:
+
+BLACK
+
+DARK BLACK
+
+DEEP RED
+
+NEON RED
+
+METALLIC GOLD
+
+Warm white may be used for readable text.
+
+==================================================
+
+51. VISUAL HIERARCHY
+
+==================================================
+
+The visual hierarchy should be:
+
+1. 3D Nexus.ai logo
+
+2. Welcome, I’m Nexus
+
+3. AI questioning bar
+
+4. Neural-network environment
+
+5. Navigation controls
+
+6. Secondary interface elements
+
+The screen should not feel crowded.
+
+==================================================
+
+52. FINAL DESKTOP COMPOSITION
+
+==================================================
+
+The initial desktop screen should approximately resemble:
+
+--------------------------------------------------
+
+3D NEXUS.AI                         LOGIN PROFILE ☰
+
+             [ subtle red/gold atmosphere ]
+
+                  Welcome, I’m Nexus
+
+             + Ask anything here..... 🎙
+
+      red/gold futuristic neural network
+
+      digital grid + particles + nodes
+
+--------------------------------------------------
+
+Maintain generous negative space.
+
+==================================================
+
+53. SPECIAL NEXUS IDENTITY
+
+==================================================
+
+The most important visual identity should be the combination:
+
+3D metallic Nexus logo
+
++
+
+black environment
+
++
+
+deep-red energy
+
++
+
+neon-red AI activity
+
++
+
+metallic gold intelligence accents
+
+The website should feel like the Nexus logo is the central AI core of the entire system.
+
+Use the same visual language throughout the interface.
+
+==================================================
+
+54. FINAL QUALITY REQUIREMENT
+
+==================================================
+
+Before finishing, verify:
+
+- no console errors
+
+- no broken imports
+
+- responsive layout works
+
+- navigation works
+
+- Login opens correctly
+
+- Profile opens correctly
+
+- Hamburger opens correctly
+
+- Plus menu works
+
+- Image upload works
+
+- File upload works
+
+- Camera has fallback
+
+- Voice has fallback
+
+- Enter submits messages
+
+- Chat interface works
+
+- Mock AI responses work
+
+- Chat history works
+
+- animations are smooth
+
+- no horizontal scrolling
+
+- 3D logo is visually polished
+
+- black/red/gold palette is consistent
+
+==================================================
+
+55. FINAL DESIGN TARGET
+
+==================================================
+
+The final product should look like:
+
+"Nexus.ai — a premium futuristic artificial intelligence command center powered by a glowing 3D neural core."
+
+It should combine:
+
+Luxury technology
+
++
+
+Futuristic AI
+
++
+
+Black metallic environment
+
++
+
+Deep crimson energy
+
++
+
+Neon-red intelligence signals
+
++
+
+Metallic gold highlights
+
++
+
+3D AI branding
+
++
+
+Minimal sophisticated UI
+
+Do not make it look like a generic AI chatbot.
+
+Do not make it look like a generic SaaS template.
+
+Make the design feel like a unique, recognizable product called:
+
+Nexus.ai
+
+Build the complete website now.
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://nexus-flow-208.lovable.app
+**Live app**: https://nexus-neural-pulse.lovable.app
 
 ## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/7f63ef41-fff7-4bb8-8c6f-6bb95f3a29bd).
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b11fc4d8-9a0b-449d-817d-bb4b51f79a6a).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
