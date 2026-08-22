@@ -1,0 +1,43 @@
+{
+  "name": "contextbridge",
+  "version": "1.0.0",
+  "description": "ContextBridge - Seamless LLM context handoffs between Claude and Gemini",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "tsx watch server/src/index.ts",
+    "client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build": "npm run build:client && npm run build:server",
+    "start": "NODE_ENV=production tsx server/src/index.ts"
+  },
+  "keywords": [
+    "contextbridge",
+    "claude",
+    "gemini",
+    "context-handoff",
+    "ai-workspace"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@google/genai": "^2.18.0",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "uuid": "^14.0.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "@types/uuid": "^10.0.0",
+    "concurrently": "^10.0.5",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
