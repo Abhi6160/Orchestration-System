@@ -1,0 +1,9 @@
+fastapi>=0.141
+uvicorn[standard]>=0.52
+python-dotenv>=1.2
+pydantic>=2.13
+google-genai>=2.19
+groq>=1.6
+httpx>=0.28
+pytest>=9.1
+pytest-asyncio>=1.4

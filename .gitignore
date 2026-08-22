@@ -6,3 +6,8 @@ dist
 *.sqlite-journal
 client/dist
 client/node_modules
+backend/.venv
+backend/__pycache__
+backend/**/__pycache__
+backend/data
+.pytest_cache

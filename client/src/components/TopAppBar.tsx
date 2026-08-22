@@ -1,11 +1,21 @@
-import React from 'react';
-import { ArrowLeftRight, Share2, MoreVertical, BrainCircuit, Sparkles, AlertTriangle } from 'lucide-react';
-import type { ProviderId } from '../types';
+import React from "react";
+import {
+  ArrowLeftRight,
+  Share2,
+  MoreVertical,
+  BrainCircuit,
+  Sparkles,
+  AlertTriangle,
+  Check,
+} from "lucide-react";
+import type { ProviderId } from "../types";
+import { api } from "../api/client";
 
 interface TopAppBarProps {
   currentProvider: ProviderId;
   totalTokens: number;
   contextLimit: number;
+  conversationId?: string | null;
   onTriggerHandoff: () => void;
   onToggleProviderDirectly?: () => void;
 }
@@ -14,11 +24,29 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
   currentProvider,
   totalTokens,
   contextLimit,
-  onTriggerHandoff
+  conversationId,
+  onTriggerHandoff,
 }) => {
-  const isClaude = currentProvider === 'claude';
-  const usagePercent = Math.min(100, Math.round((totalTokens / (contextLimit || 200000)) * 100));
+  const isClaude = currentProvider === "claude";
+  const usagePercent = Math.min(
+    100,
+    Math.round((totalTokens / (contextLimit || 200000)) * 100),
+  );
   const isHighContext = usagePercent >= 80;
+  const [justShared, setJustShared] = React.useState(false);
+
+  const handleShare = async () => {
+    if (!conversationId) return;
+    try {
+      const { shareUrl } = await api.shareConversation(conversationId);
+      const absoluteUrl = `${window.location.origin}${shareUrl}`;
+      await navigator.clipboard.writeText(absoluteUrl);
+      setJustShared(true);
+      setTimeout(() => setJustShared(false), 2000);
+    } catch (err) {
+      console.error("Failed to share conversation:", err);
+    }
+  };
 
   return (
     <header className="fixed top-0 right-0 h-16 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-6 w-[calc(100%-280px)] z-10 select-none">
@@ -29,7 +57,9 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
             <div className="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
               <BrainCircuit className="w-3.5 h-3.5 text-on-secondary-container" />
             </div>
-            <span className="text-xs font-semibold text-secondary">Claude 3.5 Sonnet</span>
+            <span className="text-xs font-semibold text-secondary">
+              Claude 3.5 Sonnet
+            </span>
             <span className="text-[10px] text-on-surface-variant font-mono bg-surface-container-lowest/80 px-1.5 py-0.2 rounded border border-outline-variant/40">
               200k
             </span>
@@ -39,7 +69,9 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
             <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0">
               <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="text-xs font-semibold text-blue-700">Gemini 1.5 Pro</span>
+            <span className="text-xs font-semibold text-blue-700">
+              Gemini 1.5 Pro
+            </span>
             <span className="text-[10px] text-blue-600 font-mono bg-white px-1.5 py-0.2 rounded border border-blue-200">
               2M Context
             </span>
@@ -69,10 +101,15 @@ export const TopAppBar: React.FC<TopAppBarProps> = ({
 
         {/* Utility buttons */}
         <button
+          onClick={handleShare}
           className="text-on-surface-variant hover:text-primary hover:bg-surface-container-high p-2 rounded-md transition-colors cursor-pointer"
-          title="Share conversation"
+          title={justShared ? "Link copied!" : "Share conversation"}
         >
-          <Share2 className="w-4 h-4" />
+          {justShared ? (
+            <Check className="w-4 h-4 text-emerald-600" />
+          ) : (
+            <Share2 className="w-4 h-4" />
+          )}
         </button>
 
         <button
