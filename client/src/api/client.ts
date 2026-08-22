@@ -1,11 +1,18 @@
-import type { Conversation, Message, HandoffPreview, HandoffRecord, ProviderInfo, ProviderId } from '../types';
+import type {
+  Conversation,
+  Message,
+  HandoffPreview,
+  HandoffRecord,
+  ProviderInfo,
+  ProviderId,
+} from "../types";
 
-const API_BASE = '/api';
+const API_BASE = "/api";
 
 export const api = {
   async getConversations(): Promise<Conversation[]> {
     const res = await fetch(`${API_BASE}/conversations`);
-    if (!res.ok) throw new Error('Failed to fetch conversations');
+    if (!res.ok) throw new Error("Failed to fetch conversations");
     const data = await res.json();
     return data.conversations;
   },
@@ -17,7 +24,7 @@ export const api = {
     latestHandoff: HandoffRecord | null;
   }> {
     const res = await fetch(`${API_BASE}/conversations/${id}`);
-    if (!res.ok) throw new Error('Failed to fetch conversation details');
+    if (!res.ok) throw new Error("Failed to fetch conversation details");
     return res.json();
   },
 
@@ -28,31 +35,34 @@ export const api = {
     context_limit?: number;
   }): Promise<Conversation> {
     const res = await fetch(`${API_BASE}/conversations`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Failed to create conversation');
+    if (!res.ok) throw new Error("Failed to create conversation");
     const json = await res.json();
     return json.conversation;
   },
 
-  async updateConversation(id: string, updates: Partial<Conversation>): Promise<Conversation> {
+  async updateConversation(
+    id: string,
+    updates: Partial<Conversation>,
+  ): Promise<Conversation> {
     const res = await fetch(`${API_BASE}/conversations/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updates)
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updates),
     });
-    if (!res.ok) throw new Error('Failed to update conversation');
+    if (!res.ok) throw new Error("Failed to update conversation");
     const json = await res.json();
     return json.conversation;
   },
 
   async deleteConversation(id: string): Promise<boolean> {
     const res = await fetch(`${API_BASE}/conversations/${id}`, {
-      method: 'DELETE'
+      method: "DELETE",
     });
-    if (!res.ok) throw new Error('Failed to delete conversation');
+    if (!res.ok) throw new Error("Failed to delete conversation");
     const json = await res.json();
     return json.success;
   },
@@ -60,31 +70,37 @@ export const api = {
   async sendMessage(
     conversationId: string,
     content: string,
-    provider?: ProviderId
+    provider?: ProviderId,
   ): Promise<{
     userMessage: Message;
     assistantMessage: Message;
     conversation: Conversation;
   }> {
-    const res = await fetch(`${API_BASE}/conversations/${conversationId}/messages`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content, provider })
-    });
-    if (!res.ok) throw new Error('Failed to send message');
+    const res = await fetch(
+      `${API_BASE}/conversations/${conversationId}/messages`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, provider }),
+      },
+    );
+    if (!res.ok) throw new Error("Failed to send message");
     return res.json();
   },
 
   async generateHandoffPreview(
     conversationId: string,
-    toProvider: ProviderId = 'gemini'
+    toProvider: ProviderId = "gemini",
   ): Promise<HandoffPreview> {
-    const res = await fetch(`${API_BASE}/conversations/${conversationId}/handoff/preview`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ to_provider: toProvider })
-    });
-    if (!res.ok) throw new Error('Failed to generate handoff preview');
+    const res = await fetch(
+      `${API_BASE}/conversations/${conversationId}/handoff/preview`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to_provider: toProvider }),
+      },
+    );
+    if (!res.ok) throw new Error("Failed to generate handoff preview");
     const json = await res.json();
     return json.preview;
   },
@@ -102,7 +118,7 @@ export const api = {
       original_token_count: number;
       compressed_token_estimate: number;
       auto_continue?: boolean;
-    }
+    },
   ): Promise<{
     success: boolean;
     handoff: HandoffRecord;
@@ -111,12 +127,15 @@ export const api = {
     systemMessage: Message;
     continuationMessage: Message | null;
   }> {
-    const res = await fetch(`${API_BASE}/conversations/${conversationId}/handoff/confirm`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('Failed to confirm handoff');
+    const res = await fetch(
+      `${API_BASE}/conversations/${conversationId}/handoff/confirm`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+    );
+    if (!res.ok) throw new Error("Failed to confirm handoff");
     return res.json();
   },
 
@@ -125,18 +144,53 @@ export const api = {
     demoNotice: string;
   }> {
     const res = await fetch(`${API_BASE}/providers`);
-    if (!res.ok) throw new Error('Failed to fetch providers');
+    if (!res.ok) throw new Error("Failed to fetch providers");
     return res.json();
   },
 
-  async simulateTokens(conversationId: string, tokens: number): Promise<Conversation> {
+  async simulateTokens(
+    conversationId: string,
+    tokens: number,
+  ): Promise<Conversation> {
     const res = await fetch(`${API_BASE}/providers/simulate-tokens`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ conversationId, tokens })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ conversationId, tokens }),
     });
-    if (!res.ok) throw new Error('Failed to simulate tokens');
+    if (!res.ok) throw new Error("Failed to simulate tokens");
     const json = await res.json();
     return json.conversation;
-  }
+  },
+
+  async getTokenUsage(conversationId: string): Promise<{
+    used_tokens: number;
+    context_limit: number;
+    percent_used: number;
+    status: "ok" | "warning" | "critical";
+  }> {
+    const res = await fetch(
+      `${API_BASE}/conversations/${conversationId}/tokens`,
+    );
+    if (!res.ok) throw new Error("Failed to fetch token usage");
+    return res.json();
+  },
+
+  async getDocs(): Promise<{ markdown: string }> {
+    const res = await fetch(`${API_BASE}/docs`);
+    if (!res.ok) throw new Error("Failed to fetch documentation");
+    return res.json();
+  },
+
+  async shareConversation(
+    conversationId: string,
+  ): Promise<{ shareUrl: string; token: string }> {
+    const res = await fetch(
+      `${API_BASE}/conversations/${conversationId}/share`,
+      {
+        method: "POST",
+      },
+    );
+    if (!res.ok) throw new Error("Failed to create share link");
+    return res.json();
+  },
 };

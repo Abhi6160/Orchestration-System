@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import conversations, providers
+from app.routers import conversations, misc, providers
 
 app = FastAPI(title="ContextBridge Backend", version="1.0.0")
 
@@ -14,6 +14,7 @@ app.add_middleware(
 
 app.include_router(conversations.router)
 app.include_router(providers.router)
+app.include_router(misc.router)
 
 
 @app.get("/api/health")

@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import threading
 from contextlib import contextmanager
 from datetime import datetime, timezone
 
@@ -53,7 +54,9 @@ CREATE INDEX IF NOT EXISTS idx_handoffs_conversation_id ON handoffs(conversation
 
 
 def _connect(db_path: str) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
+    # check_same_thread=False: FastAPI serves each request from a threadpool thread;
+    # access is serialized by Database._lock instead.
+    conn = sqlite3.connect(db_path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode=WAL;")
     conn.execute("PRAGMA foreign_keys=ON;")
@@ -66,6 +69,7 @@ class Database:
     def __init__(self, db_path: str = settings.database_path):
         os.makedirs(os.path.dirname(db_path) or ".", exist_ok=True)
         self.db_path = db_path
+        self._lock = threading.Lock()
         self._conn = _connect(db_path)
         self._conn.executescript(_SCHEMA)
         self._conn.commit()
@@ -80,15 +84,16 @@ class Database:
 
     @contextmanager
     def cursor(self):
-        cur = self._conn.cursor()
-        try:
-            yield cur
-            self._conn.commit()
-        except Exception:
-            self._conn.rollback()
-            raise
-        finally:
-            cur.close()
+        with self._lock:
+            cur = self._conn.cursor()
+            try:
+                yield cur
+                self._conn.commit()
+            except Exception:
+                self._conn.rollback()
+                raise
+            finally:
+                cur.close()
 
     def close(self):
         self._conn.close()
