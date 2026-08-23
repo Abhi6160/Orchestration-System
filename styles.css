@@ -1,0 +1,307 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Nexus.ai design system — black / deep red / metallic gold.
+ * All colors are semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Nexus palette */
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-charcoal: var(--charcoal);
+  --color-blood: var(--blood);
+  --color-crimson-dark: var(--crimson-dark);
+  --color-crimson: var(--crimson);
+  --color-red-deep: var(--red-deep);
+  --color-neon: var(--neon);
+  --color-neon-bright: var(--neon-bright);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-warm: var(--gold-warm);
+  --color-gold-pale: var(--gold-pale);
+  --color-warm: var(--warm);
+
+  --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-idle-float: idle-float 9s ease-in-out infinite;
+  --animate-glow-breathe: glow-breathe 4.5s ease-in-out infinite;
+  --animate-ring-spin: ring-spin 26s linear infinite;
+  --animate-status-pulse: status-pulse 2.2s ease-in-out infinite;
+  --animate-think-dot: think-dot 1.2s ease-in-out infinite;
+  --animate-rise-in: rise-in 0.22s ease-out;
+  --animate-drift: drift 14s ease-in-out infinite;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  --ink: oklch(0 0 0);
+  --ink-2: oklch(0.041 0 0);
+  --ink-3: oklch(0.07 0 0);
+  --charcoal: oklch(0.161 0 0);
+  --blood: oklch(0.152 0.078 29.2);
+  --crimson-dark: oklch(0.222 0.117 29.2);
+  --crimson: oklch(0.351 0.176 29.2);
+  --red-deep: oklch(0.406 0.201 29.2);
+  --neon: oklch(0.628 0.246 27.5);
+  --neon-bright: oklch(0.655 0.229 27.9);
+  --gold: oklch(0.755 0.121 85.9);
+  --gold-bright: oklch(0.877 0.169 92.1);
+  --gold-warm: oklch(0.804 0.128 78.4);
+  --gold-pale: oklch(0.929 0.076 92.3);
+  --warm: oklch(0.955 0.014 85);
+
+  --background: var(--ink);
+  --foreground: var(--warm);
+  --card: var(--ink-2);
+  --card-foreground: var(--warm);
+  --popover: var(--ink-2);
+  --popover-foreground: var(--warm);
+  --primary: var(--gold);
+  --primary-foreground: var(--ink);
+  --secondary: var(--crimson-dark);
+  --secondary-foreground: var(--gold-pale);
+  --muted: var(--charcoal);
+  --muted-foreground: oklch(0.68 0.012 85);
+  --accent: var(--crimson);
+  --accent-foreground: var(--gold-pale);
+  --destructive: var(--neon);
+  --destructive-foreground: var(--warm);
+  --border: color-mix(in oklab, var(--gold) 26%, transparent);
+  --input: color-mix(in oklab, var(--gold) 22%, transparent);
+  --ring: var(--gold);
+
+  --gradient-gold: linear-gradient(
+    100deg,
+    color-mix(in oklab, var(--gold) 70%, black),
+    var(--gold),
+    var(--gold-bright),
+    var(--gold-pale),
+    color-mix(in oklab, var(--gold) 65%, black)
+  );
+  --gradient-hero: linear-gradient(
+    100deg,
+    var(--gold),
+    var(--gold-warm),
+    var(--gold-pale),
+    var(--gold-bright),
+    color-mix(in oklab, var(--neon) 75%, var(--gold))
+  );
+  --gradient-console: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--blood) 55%, black),
+    var(--ink)
+  );
+  --gradient-glass: linear-gradient(
+    165deg,
+    color-mix(in oklab, var(--crimson-dark) 32%, transparent),
+    color-mix(in oklab, var(--ink) 92%, transparent)
+  );
+  --shadow-gold: 0 0 0 1px color-mix(in oklab, var(--gold) 30%, transparent),
+    0 18px 50px -20px color-mix(in oklab, var(--neon) 40%, transparent);
+  --shadow-neon: 0 0 24px -4px color-mix(in oklab, var(--neon) 55%, transparent);
+  --shadow-panel: 0 30px 90px -30px color-mix(in oklab, var(--neon) 35%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+}
+
+@utility text-gold-gradient {
+  background-image: var(--gradient-gold);
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-hero-gradient {
+  background-image: var(--gradient-hero);
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility glass-panel {
+  background-color: color-mix(in oklab, var(--ink) 78%, transparent);
+  background-image: var(--gradient-glass);
+  backdrop-filter: blur(16px) saturate(130%);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility console-surface {
+  background-image: var(--gradient-console);
+  border: 1px solid color-mix(in oklab, var(--gold) 34%, transparent);
+  box-shadow: var(--shadow-gold);
+}
+
+@utility glow-neon {
+  box-shadow: var(--shadow-neon);
+}
+
+@utility hairline-gold {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--gold) 45%, transparent),
+    transparent
+  );
+}
+
+@utility micro-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--gold) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--gold) 5%, transparent) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+@utility scanlines {
+  background-image: repeating-linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--warm) 3%, transparent) 0px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+@utility scrollbar-nexus {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--gold) 35%, transparent) transparent;
+}
+
+@keyframes idle-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.2deg);
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--neon) 60%, transparent);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px 2px color-mix(in oklab, var(--neon) 55%, transparent);
+  }
+}
+
+@keyframes think-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-18px, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
