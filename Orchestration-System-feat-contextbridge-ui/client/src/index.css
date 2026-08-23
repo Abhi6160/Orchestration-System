@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #f8f9fa;
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #45464c;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-outline: #76777d;
+  --color-outline-variant: #c6c6cd;
+  --color-surface-tint: #575e70;
+
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #141b2b;
+  --color-on-primary-container: #7d8497;
+  --color-primary-fixed: #dce2f7;
+  --color-primary-fixed-dim: #c0c6db;
+
+  --color-secondary: #9d4300;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fd761a;
+  --color-on-secondary-container: #5c2400;
+  --color-secondary-fixed: #ffdbca;
+  --color-secondary-fixed-dim: #ffb690;
+  --color-claude-orange: #f97316;
+
+  --color-tertiary: #001a42;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #001a42;
+  --color-on-tertiary-container: #3980f4;
+  --color-tertiary-fixed: #d8e2ff;
+  --color-tertiary-fixed-dim: #adc6ff;
+  --color-gemini-blue: #3b82f6;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --spacing-sidebar: 280px;
+  --spacing-content-max: 800px;
+  --spacing-gutter: 16px;
+  --spacing-space-xs: 4px;
+  --spacing-space-sm: 8px;
+  --spacing-space-md: 16px;
+  --spacing-space-lg: 24px;
+  --spacing-space-xl: 32px;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d9dadb;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c6c6cd;
+}
+
+/* Code block highlight styles */
+pre {
+  font-family: var(--font-mono);
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+/* Selection */
+::selection {
+  background-color: #ffdbca;
+  color: #341100;
+}
